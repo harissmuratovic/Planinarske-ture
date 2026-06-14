@@ -566,20 +566,25 @@ footer{
     width:100%;
     height:200px;
   }
+}
 
-  /* Footer becomes a clean stacked block so items never overlap */
+/* Footer: stacked, readable layout for tablets & phones.
+   On the desktop layout the nav links sit on the white mountain art and
+   become unreadable when the footer narrows, so below 820px we switch to a
+   clean solid-teal block with the mountains as a thin decorative bottom strip. */
+@media(max-width:820px){
   .footer-body{
     min-height:0;
-    padding:34px 20px 28px;
-    /* keep the white mountain art as a bottom strip so the teal
-       stays behind the white logo (otherwise the logo disappears) */
-    background-size:140% auto;
+    padding:36px 22px 104px; /* bottom room so links stay above the mountains */
+    background-color:#008080;
+    background-image:url('images/footer.webp');
+    background-size:100% 90px;     /* mountains as a full-width strip at the bottom */
     background-position:bottom center;
     background-repeat:no-repeat;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:24px;
+    gap:22px;
   }
 
   .footer-logo{
@@ -590,11 +595,16 @@ footer{
 
   .footer-nav{
     position:static;
-    gap:14px 22px;
+    gap:14px 24px;
   }
 
   .footer-nav a{
-    font-size:13px;
+    font-size:14px;
+    color:#fff; /* readable on teal */
+  }
+
+  .footer-nav a:hover{
+    color:#cfe8df;
   }
 }
 
