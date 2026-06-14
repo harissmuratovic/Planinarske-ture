@@ -39,8 +39,8 @@ header{
   width:62px;
   height:62px;
   background-color:#808000; /* maslinasta / olive */
-  -webkit-mask:url('images/logo.png') no-repeat center / contain;
-  mask:url('images/logo.png') no-repeat center / contain;
+  -webkit-mask:url('images/logo-footer.webp') no-repeat center / contain;
+  mask:url('images/logo-footer.webp') no-repeat center / contain;
 }
 
 nav{
@@ -88,7 +88,7 @@ main{
   left:50%;
   width:100vw;
   margin-left:-50vw;
-  background-image:url('images/topo.jpg');
+  background-image:url('images/topo.webp');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -365,7 +365,7 @@ footer{
   position:relative;
   min-height:215px;
   background-color:#008080;
-  background-image:url('images/footer.png');
+  background-image:url('images/footer.webp');
   background-size:100% 100%;
   background-position:center;
   background-repeat:no-repeat;
