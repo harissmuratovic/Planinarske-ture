@@ -84,11 +84,11 @@ main{
   content:"";
   position:absolute;
   top:-60px; /* extend up through main's top padding, right to the header */
-  bottom:-90px; /* extend down to where the next (stories) section begins */
+  bottom:0; /* drži pozadinu unutar svoje sekcije; ne ulazi u razmak ispod (stories) */
   left:50%;
   width:100vw;
   margin-left:-50vw;
-  background-image:url('../images/topo.webp');
+  background-image:url('../images/connect-bg.webp');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -132,9 +132,9 @@ main{
 .featured-text p{
   color:#3a4a44;
   font-family:'Montserrat', sans-serif;
-  font-weight:500;
+  font-weight:450;
   font-size:20px;
-  line-height:100%;
+  line-height:1.5;
   letter-spacing:0;
   margin-bottom:30px;
 }
@@ -247,29 +247,67 @@ main{
 /* STORIES + POPULAR */
 
 .stories-section{
+  position:relative;
+  overflow:hidden;
   display:grid;
   grid-template-columns:1.6fr 1fr;
   gap:60px;
-  margin-top:90px;
+  margin-top:50px;
+  padding-top:40px;   /* prostor da se vrhovi iznad naslova ne odsijeku (overflow:hidden) */
   align-items:start;
 }
 
+/* dekorativni mint prsten, dolje desno – isti kao u sekciji "NAŠE USLUGE" na homepageu */
+.stories-section::after{
+  content:"";
+  position:absolute;
+  right:-150px;
+  bottom:0;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  border:45px solid #dcefe8;
+  z-index:0;
+}
+
+/* sadržaj (kolone) iznad prstena */
+.stories-section > div{
+  position:relative;
+  z-index:1;
+}
+
+.stories-title{
+  width:fit-content;
+  max-width:100%;
+}
+
 .section-title{
-  font-size:18px;
+  font-size:30px;
   font-weight:600;
-  margin-bottom:0;
   line-height:1.1;
+  margin-bottom:0;
+  color:#111;
   position:relative;
   z-index:1;
 }
 
 .section-line{
-  display:block;
-  width:290px;
-  max-width:100%;
-  height:52px;
-  margin-top:-42px;
-  margin-bottom:30px;
+  display:flex;
+  align-items:flex-end;
+  width:calc(100% + 153px);
+  height:58px;
+  margin:-52px 0 36px;
+}
+
+.line-flat{
+  flex:1 1 auto;
+  border-bottom:1.5px solid #16384a;
+}
+
+.line-peaks{
+  flex:0 0 auto;
+  width:150px;
+  height:58px;
 }
 
 /* All stories list */
@@ -355,19 +393,19 @@ main{
   color:#999;
 }
 
-/* FOOTER */
+/* FOOTER (desktop = blog stil; mobitel <=820px = homepage stil) */
 
-footer{
+.footer{
   margin-top:100px;
 }
 
 .footer-body{
   position:relative;
-  min-height:215px;
+  height:215px;                  /* plava pozadina = visina slike + 10px */
   background-color:#008080;
   background-image:url('../images/footer.webp');
-  background-size:100% 100%;
-  background-position:center;
+  background-size:100% 205px;    /* fiksna visina slike planina */
+  background-position:bottom center;
   background-repeat:no-repeat;
 }
 
@@ -375,19 +413,25 @@ footer{
   position:absolute;
   top:24px;
   left:12%;
-  width:74px;
-  height:74px;
-  border-radius:50%;
-  border:2.5px solid #fff;
+  width:62px;
+  height:62px;
   display:flex;
   align-items:center;
   justify-content:center;
+  z-index:2;
 }
 
-.footer-logo .logo-img{
-  width:48px;
-  height:48px;
-  background-color:#fff; /* bijel u footeru */
+/* Logo iz homepage headera, obojen bijelo da se uklopi u footer */
+.footer-logo .footer-logo-mark{
+  width:62px;
+  height:62px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+/* SVG vrhovi – koriste se samo na mobitelu (prelaz teal -> bijelo) */
+.footer-peaks{
+  display:none;
 }
 
 .footer-nav{
@@ -403,7 +447,7 @@ footer{
 }
 
 .footer-nav a{
-  color:#1a3540;
+  color:#333;
   text-decoration:none;
   font-size:14px;
   transition:0.3s;
@@ -413,7 +457,7 @@ footer{
   color:#008080;
 }
 
-.copyright{
+.footer-copy{
   text-align:center;
   font-size:13px;
   color:#444;
@@ -568,43 +612,34 @@ footer{
   }
 }
 
-/* Footer: stacked, readable layout for tablets & phones.
-   On the desktop layout the nav links sit on the white mountain art and
-   become unreadable when the footer narrows, so below 820px we switch to a
-   clean solid-teal block with the mountains as a thin decorative bottom strip. */
+/* Mobitel/tablet: homepage stil – tirkizno s centriranim logom, SVG vrhovi kao
+   prelaz, pa bijeli blok s nav linkovima (čitljivo). */
 @media(max-width:820px){
   .footer-body{
-    min-height:0;
-    padding:36px 22px 104px; /* bottom room so links stay above the mountains */
-    background-color:#008080;
-    background-image:url('../images/footer.webp');
-    background-size:100% 90px;     /* mountains as a full-width strip at the bottom */
-    background-position:bottom center;
-    background-repeat:no-repeat;
+    height:auto;
+    background-image:none;          /* webp planine se gase; koristimo SVG vrhove */
     display:flex;
     flex-direction:column;
-    align-items:center;
-    gap:22px;
   }
 
   .footer-logo{
     position:static;
-    transform:none;
-    flex:0 0 auto;
+    margin:34px auto 24px;
+  }
+
+  .footer-peaks{
+    display:block;
+    width:100%;
+    height:130px;
+    margin-bottom:-1px;
   }
 
   .footer-nav{
     position:static;
+    background:#fff;                 /* bijeli blok s linkovima */
+    margin:0;
+    padding:26px 22px;
     gap:14px 24px;
-  }
-
-  .footer-nav a{
-    font-size:14px;
-    color:#fff; /* readable on teal */
-  }
-
-  .footer-nav a:hover{
-    color:#cfe8df;
   }
 }
 
