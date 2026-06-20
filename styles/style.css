@@ -44,14 +44,15 @@ header{
 
 nav{
   display:flex;
-  gap:40px;
+  gap:45px;
 }
 
 nav a{
   color:white;
   text-decoration:none;
-  font-size:14px;
+  font-size:16px;
   font-weight:500;
+  letter-spacing:2px;
   transition:0.3s;
 }
 
