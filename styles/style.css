@@ -81,15 +81,20 @@ nav a:hover{
 
 .hero-content{
   display:flex;
-  align-items:center;
+  flex-direction:column;
+  align-items:flex-start;
   margin:0 8% 8% 0;
   text-align:left;
   z-index:2;
 }
 
+.hero-heading{
+  display:flex;
+  align-items:stretch;   /* linija se rasteže na visinu naslova */
+}
+
 .line{
   width:6px;
-  height:130px;
   background:#00d2d3;
   margin-right:25px;
   border-radius:10px;
@@ -100,7 +105,11 @@ nav a:hover{
   font-size:58px;
   line-height:1.1;
   font-weight:700;
-  margin-bottom:30px;
+  margin-bottom:0;
+}
+
+.hero-content button{
+  margin-top:30px;
 }
 
 .hero button{
@@ -679,10 +688,6 @@ nav a:hover{
 
   .hero h1{
     font-size:32px;
-  }
-
-  .line{
-    height:90px;
   }
 
 }
