@@ -10,7 +10,13 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== HEADER ===== */
+button,
+input,
+textarea{
+  font-family:inherit;
+}
+
+/* ===== HEADER (kopija iz blog.css) ===== */
 header{
   display:flex;
   justify-content:space-between;
@@ -23,6 +29,7 @@ header{
   align-items:center;
 }
 
+/* Header logo (already coloured PNG) */
 .logo-mark{
   display:block;
   width:62px;
@@ -30,14 +37,24 @@ header{
   object-fit:contain;
 }
 
-header nav{
+/* PNG logo used as a mask so it can be tinted any colour */
+.logo-img{
+  display:block;
+  width:62px;
+  height:62px;
+  background-color:#808000; /* maslinasta / olive */
+  -webkit-mask:url('../images/logo-footer.webp') no-repeat center / contain;
+  mask:url('../images/logo-footer.webp') no-repeat center / contain;
+}
+
+nav{
   display:flex;
   align-items:center;
   gap:45px;
   padding-left:70px;
 }
 
-header nav a{
+nav a{
   color:#16384a;
   text-decoration:none;
   font-size:16px;
@@ -46,29 +63,81 @@ header nav a{
   transition:0.3s;
 }
 
-header nav a:hover,
-header nav a.active{
+nav a:hover,
+nav a.active{
   color:#0e8388;
 }
 
 /* ===== HERO ===== */
+.routes-hero-wrap{
+  position:relative;
+}
+
 .routes-hero{
   position:relative;
-  min-height:80vh;
+  min-height:90vh;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:center;
+  overflow:hidden;
+}
 
-  background-image:
-    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-    url('../images/routes-images/naslovnaRute.webp');
+/* slojevi slika za slideshow (fade prelaz) */
+.hero-slide{
+  position:absolute;
+  inset:0;
   background-size:cover;
   background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  z-index:0;
+}
+
+.hero-slide.is-active{
+  opacity:1;
+}
+
+/* tamni preljev preko slike */
+.routes-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+  z-index:1;
 }
 
 .routes-hero-content{
+  position:relative;
+  z-index:2;
   text-align:center;
   color:#fff;
+  padding-bottom:130px;   /* tekst pri dnu, iznad crtica i filter trake */
+}
+
+/* indikatori (crtice) za slideshow */
+.hero-dots{
+  position:absolute;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:2;
+}
+
+.hero-dot{
+  width:18px;
+  height:5px;
+  border-radius:3px;
+  background:rgba(255,255,255,0.85);
+  cursor:pointer;
+  transition:width 0.4s ease, background 0.4s ease;
+}
+
+.hero-dot.is-active{
+  width:42px;
+  background:#2aa3d4;
 }
 
 .routes-hero-content h1{
@@ -156,9 +225,9 @@ header nav a.active{
 /* ===== KATALOG TURA ===== */
 .catalog{
   position:relative;
-  max-width:1100px;
+  max-width:1180px;
   margin:0 auto;
-  padding:80px 40px 100px;
+  padding:80px 24px 100px;
 }
 
 .catalog > *{
@@ -181,25 +250,28 @@ header nav a.active{
 
 .catalog-title{
   text-align:center;
-  font-size:28px;
+  font-size:45px;
   font-weight:700;
   color:#16384a;
   margin-bottom:60px;
 }
 
 .tour-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:stretch;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:24px;
   margin-bottom:45px;
 }
 
-.tour-row--reverse .tour-image{
-  order:-1;
+.tour-row--reverse{
+  flex-direction:row-reverse;
 }
 
 .tour-card{
+  width:748px;
+  max-width:100%;
+  height:500px;
   background:#e6f3ee;
   border-radius:16px;
   padding:30px 32px;
@@ -291,11 +363,14 @@ header nav a.active{
   background:#0b6b6f;
 }
 
+.tour-image{
+  flex-shrink:0;
+}
+
 .tour-image img{
   display:block;
-  width:100%;
-  height:100%;
-  min-height:240px;
+  width:343px;
+  height:514px;
   object-fit:cover;
   border-radius:16px;
 }
@@ -308,7 +383,7 @@ header nav a.active{
 }
 
 .custom-q{
-  font-size:24px;
+  font-size:45px;
   font-weight:700;
   color:#16384a;
   margin-bottom:16px;
@@ -326,7 +401,7 @@ header nav a.active{
 }
 
 .custom-big{
-  font-size:32px;
+  font-size:60px;
   font-weight:800;
   color:#16384a;
   margin-bottom:24px;
@@ -349,6 +424,41 @@ header nav a.active{
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* Kartice tura: kad fiksne dimenzije (748+343) ne stanu, slažu se vertikalno */
+@media(max-width:1180px){
+  .tour-row,
+  .tour-row--reverse{
+    flex-direction:column;
+  }
+
+  .tour-card{
+    width:100%;
+    height:auto;
+  }
+
+  .tour-image{
+    width:100%;
+    order:-1;          /* slika na vrhu */
+  }
+
+  .tour-image img{
+    width:100%;
+    height:260px;
+  }
+}
+
+@media(max-width:1024px){
+  header{
+    padding:18px 40px;
+  }
+
+  nav{
+    gap:32px;
+    padding-left:40px;
+  }
+}
+
 @media(max-width:900px){
   header{
     flex-wrap:wrap;
@@ -357,27 +467,31 @@ header nav a.active{
     padding:18px 30px;
   }
 
-  header nav{
-    gap:32px;
+  nav{
+    gap:24px;
+    padding-left:30px;
+    flex-wrap:wrap;
+    justify-content:center;
   }
 
   .routes-hero-content h1{
     font-size:44px;
   }
 
-  .tour-row{
-    grid-template-columns:1fr;
-    gap:18px;
+  .routes-hero-content{
+    padding-bottom:60px;
   }
 
-  /* slika uvijek na vrhu kad je složeno vertikalno */
-  .tour-image,
-  .tour-row--reverse .tour-image{
-    order:-1;
+  /* filter traka ide ISPOD slike */
+  .routes-filter{
+    position:static;
+    flex-wrap:wrap;
+    gap:10px 18px;
   }
 
-  .tour-image img{
-    min-height:200px;
+  /* crtice pri dnu slike (filter više nije preko slike) */
+  .hero-dots{
+    bottom:24px;
   }
 }
 
@@ -411,6 +525,12 @@ header nav a.active{
     flex-direction:column;
     gap:18px;
     padding:18px 20px;
+  }
+
+  nav{
+    border-left:none;
+    padding-left:0;
+    gap:14px 18px;
   }
 }
 
