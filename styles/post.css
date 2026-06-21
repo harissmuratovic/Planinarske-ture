@@ -1,0 +1,558 @@
+/* Single blog post / article page.
+   Reuses the shared chrome (navbar, footer, fonts, colours) from blog.css
+   and adds only the styles needed for a single article body. */
+
+/* blog.css sets `overflow-x:hidden` on the body, which turns it into a scroll
+   container and breaks `position:sticky` (the share icons would scroll with the
+   text instead of staying put). `overflow-x:clip` still prevents horizontal
+   scroll but doesn't create a scroll container, so sticky works again. */
+body{
+  overflow-x:clip;
+}
+
+/* ARTICLE LAYOUT */
+
+.article{
+  max-width:1116px;   /* share 80 + gap 56 + text 980 */
+  margin:50px auto 0;
+}
+
+/* Body section: narrow "Share this" sidebar on the left, text on the right. */
+.article-layout{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:56px;
+  align-items:start;
+}
+
+.share{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:16px;
+}
+
+.share-label{
+  font-size:14px;
+  color:#9a9a9a;
+  margin-bottom:6px;
+}
+
+.share-icon{
+  display:block;
+  color:#0e8388;
+  transition:0.3s;
+}
+
+.share-icon:hover{
+  color:#16384a;
+}
+
+.share-icon svg,
+.share-icon img{
+  width:36px;
+  height:36px;
+  object-fit:contain;
+  display:block;
+}
+
+/* HERO SECTION — mint text card on the left, separate image on the right,
+   both sitting on the topo background. */
+
+/* Page is designed on a 1440-wide frame (first section ~710 tall).
+   Match that width; the 748 card + 343 image sit centred with the leftover
+   space becoming side margins. */
+main{
+  max-width:1440px;
+}
+
+.topo-section{
+  padding:40px 0;
+}
+
+.post-hero{
+  margin-bottom:60px;
+}
+
+.post-hero-card{
+  display:flex;
+  gap:48px;
+  align-items:center;
+  justify-content:center;
+}
+
+.post-hero-text{
+  width:748px;
+  height:500px;
+  max-width:100%;
+  background:#D0EADD;
+  border-radius:25px;
+  padding:46px 44px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.article-category{
+  display:inline-block;
+  align-self:flex-start;
+  margin-bottom:0;
+  color:#008080;
+  font-weight:700;
+  font-size:20px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+
+.post-hero-text h1{
+  width:672px;
+  max-width:100%;
+  font-weight:700;
+  font-size:40px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  color:#16384a;
+  margin-top:16px;
+  margin-bottom:0;
+}
+
+.post-hero-author{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-top:90px;
+  margin-bottom:0;
+}
+
+.author-avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  flex:0 0 auto;
+  display:block;
+}
+
+.post-hero-author p{
+  width:491px;
+  max-width:100%;
+  color:#3a4a44;
+  font-weight:500;
+  font-size:16px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  margin:0;
+}
+
+.post-hero-date{
+  align-self:flex-end;
+  margin-top:auto;
+  font-weight:400;
+  font-size:20px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  color:#16384a;
+  text-transform:uppercase;
+}
+
+.post-hero-image{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.post-hero-image img{
+  width:343px;
+  height:514px;
+  max-width:100%;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 14px 40px rgba(0,0,0,0.12);
+  display:block;
+}
+
+/* BODY */
+
+.article-body p{
+  color:#333;
+  font-weight:500;
+  font-size:18px;
+  line-height:24px;
+  letter-spacing:0;
+  margin-bottom:22px;
+}
+
+.article-body h2{
+  font-size:26px;
+  font-weight:600;
+  color:#16384a;
+  margin:40px 0 16px;
+}
+
+.article-body h3{
+  font-size:20px;
+  font-weight:600;
+  color:#16384a;
+  margin:30px 0 12px;
+}
+
+.article-body ul,
+.article-body ol{
+  margin:0 0 24px 22px;
+}
+
+.article-body li{
+  color:#3a4a44;
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:10px;
+}
+
+.article-body img{
+  width:100%;
+  border-radius:12px;
+  margin:14px 0 30px;
+  display:block;
+}
+
+.article-body a{
+  color:#2aa3d4;
+  text-decoration:none;
+}
+
+.article-body a:hover{
+  text-decoration:underline;
+}
+
+/* Pull-quote */
+
+.article-body blockquote{
+  margin:34px 0;
+  padding:22px 30px;
+  border-left:4px solid #0e8388;
+  background:#f4faf8;
+  border-radius:0 10px 10px 0;
+  color:#16384a;
+  font-size:20px;
+  font-style:italic;
+  line-height:1.6;
+}
+
+/* TAGS */
+
+.article-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:46px;
+  padding-top:30px;
+  border-top:1px solid #eee;
+}
+
+.article-tags .tag{
+  padding:7px 18px;
+  border-radius:30px;
+  background:#f0f0f0;
+  color:#555;
+  font-size:13px;
+  font-weight:500;
+}
+
+/* CTA back to booking, same look as the featured button on blog.html */
+
+.article-cta{
+  margin-top:50px;
+  padding:40px;
+  border-radius:16px;
+  background:#cfe8df;
+  text-align:center;
+}
+
+.article-cta h2{
+  font-size:24px;
+  font-weight:600;
+  color:#16384a;
+  margin-bottom:14px;
+}
+
+.article-cta p{
+  color:#3a4a44;
+  font-size:16px;
+  margin-bottom:24px;
+}
+
+.article-cta button{
+  padding:14px 34px;
+  border:none;
+  border-radius:30px;
+  background:#2aa3d4;
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.article-cta button:hover{
+  background:#1f8cba;
+  transform:translateY(-2px);
+}
+
+/* READ NEXT SECTION */
+
+.read-next{
+  max-width:1100px;
+  margin:90px auto 0;
+}
+
+/* Line under the "Read next" title — exact vector (flat line + mountain peaks).
+   Pulled up so the flat line sits just under the title and the peaks rise
+   alongside it, matching the "Popularno" treatment on the blog. */
+.read-line{
+  display:block;
+  width:304px;
+  max-width:100%;
+  height:55px;
+  margin:-46px 0 36px;
+}
+
+/* Featured: mint text card and image side by side (touching), 1100 x 500. */
+.read-featured{
+  display:flex;
+  height:500px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,0.14);
+}
+
+.read-featured-text{
+  flex:0 0 auto;
+  width:514px;
+  max-width:55%;
+  background:#cfe8df;
+  padding:40px 44px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.read-featured-image{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.read-featured-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.read-featured-text h3{
+  font-size:24px;
+  font-weight:700;
+  color:#16384a;
+  margin-bottom:16px;
+}
+
+.read-featured-text p{
+  width:426px;
+  max-width:100%;
+  color:#3a4a44;
+  font-weight:500;
+  font-size:20px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  margin-bottom:24px;
+}
+
+.read-featured-text button{
+  align-self:flex-start;
+  width:246px;
+  height:52px;
+  max-width:100%;
+  border:none;
+  border-radius:20px;
+  background:#0e8388;
+  color:#fff;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.read-featured-text button:hover{
+  background:#0b6b6f;
+  transform:translateY(-2px);
+}
+
+/* Grid of related posts */
+.read-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:34px 56px;
+  margin-top:56px;
+}
+
+.read-card{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:20px;
+  align-items:center;
+  text-decoration:none;
+  color:inherit;
+}
+
+.read-card h4{
+  transition:0.3s;
+}
+
+.read-card:hover h4{
+  color:#008080;
+}
+
+.read-card-image img{
+  width:200px;
+  height:112.7px;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+}
+
+.read-card-body h4{
+  width:258px;
+  max-width:100%;
+  font-family:'Montserrat', sans-serif;
+  font-weight:600;
+  font-size:20px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  color:#16384a;
+  margin-bottom:10px;
+}
+
+/* Meta under each card title: author (1st row) + date (2nd row) */
+.read-card .post-meta{
+  gap:12px;
+}
+
+.read-card .post-meta .author,
+.read-card .post-meta .date{
+  font-weight:400;
+  font-size:18px;
+  line-height:1;        /* 100% */
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+
+/* Pagination */
+.read-pagination{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:50px;
+}
+
+.page-bar{
+  width:52px;
+  height:10px;
+  border-radius:6px;
+  background:#d9d9d9;
+}
+
+.page-bar.active{
+  width:110px;
+  background:#008080;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+  .post-hero-text{
+    flex:1;
+    width:auto;
+    height:auto;
+    min-height:440px;
+  }
+}
+
+@media(max-width:900px){
+  .post-hero-card{
+    flex-direction:column;
+  }
+
+  .post-hero-text{
+    min-height:0;
+  }
+
+  .post-hero-image{
+    order:-1;
+    justify-content:center;
+  }
+
+  .post-hero-image img{
+    width:100%;
+    height:380px;
+  }
+
+  /* Read next: stack the text and image vertically */
+  .read-featured{
+    flex-direction:column;
+    height:auto;
+  }
+
+  .read-featured-text{
+    width:100%;
+    max-width:100%;
+    order:2;
+  }
+
+  .read-featured-image{
+    order:1;
+  }
+
+  .read-featured-image img{
+    height:300px;
+  }
+}
+
+@media(max-width:600px){
+  .post-hero-text{
+    padding:34px 26px;
+  }
+
+  .post-hero-text h1{
+    font-size:26px;
+  }
+
+  .post-hero-image img{
+    width:100%;
+    height:300px;
+  }
+
+  .article-layout{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .share{
+    position:static;
+    flex-direction:row;
+    align-items:center;
+    gap:18px;
+  }
+
+  .article-body p,
+  .article-body li{
+    font-size:16px;
+  }
+
+  .article-cta{
+    padding:30px 22px;
+  }
+
+  .read-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+}

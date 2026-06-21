@@ -69,7 +69,7 @@ nav a.active{
 main{
   max-width:1100px;
   margin:auto;
-  padding:60px 40px;
+  padding:60px 0;   /* bočni padding uklonjen da prva sekcija može biti puna širina (1100px) */
   background:#fff;
 }
 
@@ -77,7 +77,7 @@ main{
 
 .topo-section{
   position:relative;
-  padding:40px;
+  padding:40px 0;   /* bočni padding uklonjen radi pune širine prve sekcije */
 }
 
 .topo-section::before{
@@ -106,6 +106,10 @@ main{
 }
 
 .featured{
+  width:1100px;
+  max-width:100%;
+  height:500px;
+  margin:0 auto;
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:stretch;
@@ -132,9 +136,9 @@ main{
 .featured-text p{
   color:#3a4a44;
   font-family:'Montserrat', sans-serif;
-  font-weight:450;
+  font-weight:500;
   font-size:20px;
-  line-height:1.5;
+  line-height:100%;
   letter-spacing:0;
   margin-bottom:30px;
 }
@@ -253,7 +257,7 @@ main{
   grid-template-columns:1.6fr 1fr;
   gap:60px;
   margin-top:50px;
-  padding-top:40px;   /* room so the peaks above the title aren't clipped (overflow:hidden) */
+  padding:40px 40px 0;   /* top room so the peaks above the title aren't clipped + side gutter (main no longer has side padding) */
   align-items:start;
 }
 
@@ -362,6 +366,35 @@ main{
   object-fit:cover;
   border-radius:8px;
   display:block;
+}
+
+/* Wrapper links oko svih kartica (zadržavaju izgled kartice, bez plave/podvučene) */
+.post-main-link,
+.post-card-link,
+.story-link,
+.popular-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+
+.post-main-link:hover h2,
+.post-card-link:hover h3,
+.story-link:hover h3,
+.popular-link:hover h4{
+  color:#008080;
+}
+
+/* Jedinstvena tipografija teksta linkova (kartice) na svim stranicama */
+.post-main-link h2,
+.post-card-link h3,
+.story-link h3,
+.popular-link h4{
+  font-family:'Montserrat', sans-serif;
+  font-weight:600;
+  font-size:20px;
+  line-height:100%;
+  letter-spacing:0;
 }
 
 /* Popular list */
@@ -518,6 +551,7 @@ main{
 
   .featured{
     grid-template-columns:1fr;
+    height:auto;
   }
 
   .featured-image{
