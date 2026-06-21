@@ -160,77 +160,6 @@ nav a.active{
   letter-spacing:1px;
 }
 
-/* ===== FILTER BAR ===== */
-.routes-filter{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:2;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:18px 30px;
-}
-
-.filter-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:0 28px;
-  border-right:1px solid #e2e2e2;
-  color:#2aa3d4;
-  font-size:24px;
-  font-weight:500;
-  cursor:pointer;
-}
-
-.filter-item:last-of-type{
-  border-right:none;
-}
-
-.filter-item svg{
-  width:20px;
-  height:20px;
-  color:#0e8388;
-}
-
-.filter-item img{
-  width:40px;
-  height:40px;
-  object-fit:contain;
-}
-
-.filter-item .filter-chevron{
-  width:14px;
-  height:14px;
-  color:#16384a;
-  opacity:0.55;
-}
-
-.filter-search{
-  margin-left:24px;
-  width:237px;
-  height:68px;
-  border:none;
-  border-radius:8px;
-  background:#2aa3d4;
-  color:#fff;
-  font-size:24px;
-  font-weight:400;
-  letter-spacing:0.5px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.filter-search:hover{
-  background:#1f8cba;
-  transform:translateY(-2px);
-}
-
 /* ===== TOUR CATALOG ===== */
 .catalog{
   position:relative;
@@ -491,41 +420,9 @@ nav a.active{
     padding-bottom:60px;
   }
 
-  /* filter bar goes BELOW the image */
-  .routes-filter{
-    position:static;
-    flex-wrap:wrap;
-    gap:10px 18px;
-  }
-
-  /* dashes near the bottom of the image (filter no longer over the image) */
+  /* dashes near the bottom of the image */
   .hero-dots{
     bottom:40px;
-  }
-}
-
-@media(max-width:700px){
-  .routes-filter{
-    position:static;
-    flex-direction:column;
-    align-items:stretch;
-    gap:14px;
-  }
-
-  .filter-item{
-    border-right:none;
-    border-bottom:1px solid #e2e2e2;
-    padding:0 0 14px;
-    justify-content:center;
-  }
-
-  .filter-item:last-of-type{
-    border-bottom:none;
-  }
-
-  .filter-search{
-    margin-left:0;
-    width:100%;
   }
 }
 
