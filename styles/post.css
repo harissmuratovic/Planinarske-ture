@@ -399,6 +399,16 @@ main{
   grid-template-columns:200px 1fr;
   gap:20px;
   align-items:center;
+  text-decoration:none;
+  color:inherit;
+}
+
+.read-card h4{
+  transition:0.3s;
+}
+
+.read-card:hover h4{
+  color:#008080;
 }
 
 .read-card-image img{
@@ -412,6 +422,7 @@ main{
 .read-card-body h4{
   width:258px;
   max-width:100%;
+  font-family:'Montserrat', sans-serif;
   font-weight:600;
   font-size:20px;
   line-height:1;        /* 100% */
