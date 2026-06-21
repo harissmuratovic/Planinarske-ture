@@ -117,7 +117,7 @@ nav a.active{
 /* indikatori (crtice) za slideshow */
 .hero-dots{
   position:absolute;
-  bottom:80px;
+  bottom:105px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
@@ -159,6 +159,7 @@ nav a.active{
   left:0;
   right:0;
   bottom:0;
+  z-index:2;
   background:#fff;
   display:flex;
   align-items:center;
@@ -491,7 +492,7 @@ nav a.active{
 
   /* crtice pri dnu slike (filter više nije preko slike) */
   .hero-dots{
-    bottom:24px;
+    bottom:40px;
   }
 }
 
