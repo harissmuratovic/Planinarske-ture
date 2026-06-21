@@ -38,7 +38,7 @@ header{
   display:block;
   width:62px;
   height:62px;
-  background-color:#808000; /* maslinasta / olive */
+  background-color:#808000; /* olive */
   -webkit-mask:url('../images/logo-footer.webp') no-repeat center / contain;
   mask:url('../images/logo-footer.webp') no-repeat center / contain;
 }
@@ -84,7 +84,7 @@ main{
   content:"";
   position:absolute;
   top:-60px; /* extend up through main's top padding, right to the header */
-  bottom:0; /* drži pozadinu unutar svoje sekcije; ne ulazi u razmak ispod (stories) */
+  bottom:0; /* keep the background within its own section; don't extend into the gap below (stories) */
   left:50%;
   width:100vw;
   margin-left:-50vw;
@@ -253,11 +253,11 @@ main{
   grid-template-columns:1.6fr 1fr;
   gap:60px;
   margin-top:50px;
-  padding-top:40px;   /* prostor da se vrhovi iznad naslova ne odsijeku (overflow:hidden) */
+  padding-top:40px;   /* room so the peaks above the title aren't clipped (overflow:hidden) */
   align-items:start;
 }
 
-/* dekorativni mint prsten, dolje desno – isti kao u sekciji "NAŠE USLUGE" na homepageu */
+/* decorative mint ring, bottom-right – same as in the services ("NAŠE USLUGE") section on the homepage */
 .stories-section::after{
   content:"";
   position:absolute;
@@ -270,7 +270,7 @@ main{
   z-index:0;
 }
 
-/* sadržaj (kolone) iznad prstena */
+/* content (columns) above the ring */
 .stories-section > div{
   position:relative;
   z-index:1;
@@ -393,7 +393,7 @@ main{
   color:#999;
 }
 
-/* FOOTER (desktop = blog stil; mobitel <=820px = homepage stil) */
+/* FOOTER (desktop = blog style; mobile <=820px = homepage style) */
 
 .footer{
   margin-top:100px;
@@ -401,10 +401,10 @@ main{
 
 .footer-body{
   position:relative;
-  height:215px;                  /* plava pozadina = visina slike + 10px */
+  height:215px;                  /* teal background = image height + 10px */
   background-color:#008080;
   background-image:url('../images/footer.webp');
-  background-size:100% 205px;    /* fiksna visina slike planina */
+  background-size:100% 205px;    /* fixed height of the mountains image */
   background-position:bottom center;
   background-repeat:no-repeat;
 }
@@ -421,7 +421,7 @@ main{
   z-index:2;
 }
 
-/* Logo iz homepage headera, obojen bijelo da se uklopi u footer */
+/* Logo from the homepage header, tinted white to fit the footer */
 .footer-logo .footer-logo-mark{
   width:62px;
   height:62px;
@@ -429,7 +429,7 @@ main{
   filter:brightness(0) invert(1);
 }
 
-/* SVG vrhovi – koriste se samo na mobitelu (prelaz teal -> bijelo) */
+/* SVG peaks – used only on mobile (teal -> white transition) */
 .footer-peaks{
   display:none;
 }
@@ -612,12 +612,12 @@ main{
   }
 }
 
-/* Mobitel/tablet: homepage stil – tirkizno s centriranim logom, SVG vrhovi kao
-   prelaz, pa bijeli blok s nav linkovima (čitljivo). */
+/* Mobile/tablet: homepage style – teal with a centered logo, SVG peaks as a
+   transition, then a white block with the nav links (readable). */
 @media(max-width:820px){
   .footer-body{
     height:auto;
-    background-image:none;          /* webp planine se gase; koristimo SVG vrhove */
+    background-image:none;          /* webp mountains are turned off; we use the SVG peaks */
     display:flex;
     flex-direction:column;
   }
@@ -636,7 +636,7 @@ main{
 
   .footer-nav{
     position:static;
-    background:#fff;                 /* bijeli blok s linkovima */
+    background:#fff;                 /* white block with the links */
     margin:0;
     padding:26px 22px;
     gap:14px 24px;

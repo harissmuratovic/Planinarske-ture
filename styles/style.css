@@ -33,7 +33,7 @@ header{
   letter-spacing:2px;
 }
 
-/* Header logo slika – obojena u bijelo da se vidi preko hero slike */
+/* Header logo image – tinted white so it shows over the hero image */
 .logo-mark{
   display:block;
   width:62px;
@@ -90,7 +90,7 @@ nav a:hover{
 
 .hero-heading{
   display:flex;
-  align-items:stretch;   /* linija se rasteže na visinu naslova */
+  align-items:stretch;
 }
 
 .line{
@@ -151,8 +151,8 @@ nav a:hover{
   z-index:0;
 }
 
-/* Naslov "Popular" – identičan kao na blogu, centriran na osnovu linije
-   (kontejner = širina linije 290px, pa je linija u sredini, naslov lijevo). */
+/* "Popular" heading – identical to the blog, centered based on the line
+   (container = line width 290px, so the line is centered, title on the left). */
 .services-title{
   width:fit-content;
   max-width:100%;
@@ -167,26 +167,26 @@ nav a:hover{
   color:#111;
 }
 
-/* Krivudava (planinska) linija ispod naslova sekcija (kao na blogu).
-   Ravni dio (.line-flat) se rasteže, a vrhovi (.line-peaks) ostaju fiksne
-   veličine – pa kod dužih naslova vrhovi ne prelaze preko teksta. */
+/* Wavy (mountain) line below the section titles (like on the blog).
+   The flat part (.line-flat) stretches, while the peaks (.line-peaks) stay a
+   fixed size – so on longer titles the peaks don't overlap the text. */
 .section-line{
   display:flex;
   align-items:flex-end;
-  width:calc(100% + 153px);   /* širina naslova + 3px razmak + 150px vrhovi */
+  width:calc(100% + 153px);   /* title width + 3px gap + 150px peaks */
   height:58px;
   margin:-52px 0 36px;
 }
 
 .line-flat{
-  flex:1 1 auto;              /* ravni dio = tačno širina naslova */
+  flex:1 1 auto;              /* flat part = exactly the title width */
   border-bottom:1.5px solid #16384a;
 }
 
 .line-peaks{
   flex:0 0 auto;
   width:150px;
-  height:58px;                /* ravni dio se spaja s vrhovima, bez razmaka */
+  height:58px;                /* flat part connects to the peaks, no gap */
 }
 
 .services-grid{
@@ -550,7 +550,7 @@ nav a:hover{
   transform:translateY(-3px);
 }
 
-/* FOOTER (desktop = blog stil; mobitel <=820px = homepage stil) */
+/* FOOTER (desktop = blog style; mobile <=820px = homepage style) */
 
 .footer{
   margin-top:0;
@@ -566,7 +566,7 @@ nav a:hover{
   background-repeat:no-repeat;
 }
 
-/* Logo u footeru – bijel, gore lijevo na tirkiznoj traci */
+/* Footer logo – white, top-left on the teal strip */
 .footer-logo{
   position:absolute;
   top:24px;
@@ -586,7 +586,7 @@ nav a:hover{
   filter:brightness(0) invert(1);
 }
 
-/* SVG vrhovi – koriste se samo na mobitelu (prelaz teal -> bijelo) */
+/* SVG peaks – used only on mobile (teal -> white transition) */
 .footer-peaks{
   display:none;
 }
@@ -648,8 +648,8 @@ nav a:hover{
 
 }
 
-/* Mobitel/tablet: homepage stil – tirkizno s centriranim logom, SVG vrhovi kao
-   prelaz, pa bijeli blok s nav linkovima. */
+/* Mobile/tablet: homepage style – teal with a centered logo, SVG peaks as a
+   transition, then a white block with the nav links. */
 @media(max-width:820px){
   .footer-body{
     height:auto;

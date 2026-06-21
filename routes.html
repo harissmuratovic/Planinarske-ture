@@ -36,12 +36,12 @@
     <div class="routes-hero-wrap">
 
       <section class="routes-hero">
-        <div class="hero-slide is-active" style="background-image:url('images/routes-images/sporedna1.webp')"></div>
-        <div class="hero-slide" style="background-image:url('images/routes-images/naslovnaRute.webp')"></div>
-        <div class="hero-slide" style="background-image:url('images/routes-images/sporedna3.webp')"></div>
+        <div class="hero-slide is-active" data-title="HAJLA" style="background-image:url('images/routes-images/sporedna1.webp')"></div>
+        <div class="hero-slide" data-title="AHMICA" style="background-image:url('images/routes-images/naslovnaRute.webp')"></div>
+        <div class="hero-slide" data-title="RUSOLIJA" style="background-image:url('images/routes-images/sporedna3.webp')"></div>
 
         <div class="routes-hero-content">
-          <h1>AHMICA</h1>
+          <h1>HAJLA</h1>
           <p>Otkrijte svoju avanturu</p>
         </div>
 
@@ -90,12 +90,12 @@
 
     </div>
 
-    <!-- KATALOG TURA -->
+    <!-- TOUR CATALOG -->
     <section class="catalog">
 
       <h2 class="catalog-title">Istražite naš katalog uzbudljivih tura</h2>
 
-      <!-- Tura 1: sadržaj lijevo, slika desno -->
+      <!-- Tour 1: content left, image right -->
       <article class="tour-row">
         <div class="tour-card">
           <div class="tour-card-top">
@@ -120,7 +120,7 @@
         </div>
       </article>
 
-      <!-- Tura 2: slika lijevo, sadržaj desno -->
+      <!-- Tour 2: image left, content right -->
       <article class="tour-row tour-row--reverse">
         <div class="tour-card">
           <div class="tour-card-top">
@@ -145,7 +145,7 @@
         </div>
       </article>
 
-      <!-- Tura 3: sadržaj lijevo, slika desno -->
+      <!-- Tour 3: content left, image right -->
       <article class="tour-row">
         <div class="tour-card">
           <div class="tour-card-top">
@@ -170,7 +170,7 @@
         </div>
       </article>
 
-      <!-- POZIV NA AKCIJU: prilagođena tura -->
+      <!-- CALL TO ACTION: custom tour -->
       <div class="custom-cta">
         <h3 class="custom-q">Želite li <span>prilagođenu</span> turu?</h3>
         <p>Za razliku od unaprijed pripremljenih tura koje prate fiksni plan,
@@ -208,32 +208,8 @@
     <p class="footer-copy">&copy; 2023 Hamza Ganić, Sva prava zadržana</p>
   </footer>
 
-  <!-- Hero slideshow: mijenja sliku svakih 10 sekundi + indikatori -->
-  <script>
-    (function () {
-      const slides = document.querySelectorAll('.routes-hero .hero-slide');
-      const dots = document.querySelectorAll('.routes-hero .hero-dot');
-      if (slides.length < 2) return;
-
-      let index = 0;
-
-      function show(i) {
-        index = i;
-        slides.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
-        dots.forEach(function (d, n) { d.classList.toggle('is-active', n === i); });
-      }
-
-      let timer = setInterval(function () { show((index + 1) % slides.length); }, 10000);
-
-      dots.forEach(function (d, i) {
-        d.addEventListener('click', function () {
-          show(i);
-          clearInterval(timer);
-          timer = setInterval(function () { show((index + 1) % slides.length); }, 10000);
-        });
-      });
-    })();
-  </script>
+  <!-- Hero slideshow logic (external JS file) -->
+  <script src="js/routes.js"></script>
 
 </body>
 
