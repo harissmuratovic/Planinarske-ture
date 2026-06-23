@@ -265,6 +265,19 @@ nav a.active{
   flex:1;
 }
 
+/* clickable title + description block (opens the tour's detail page) */
+.tour-text-link{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  flex:1;
+  color:inherit;
+  text-decoration:none;
+}
+.tour-text-link:hover h3{
+  color:#0e8388;
+}
+
 .tour-card-bottom{
   display:flex;
   align-items:center;
