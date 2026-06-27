@@ -131,3 +131,59 @@
     transform:translateY(-8px) rotate(-45deg);
   }
 }
+
+/* ===== Sponzori / Donatori (zajednička sekcija na svim stranicama) ===== */
+.sponsors {
+  background: #ffffff;
+  border-top: 1px solid rgba(10, 30, 60, 0.07);
+  padding: 64px 24px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sponsors-text {
+  max-width: 880px;
+  margin: 0 auto 40px;
+  color: #5a5f66;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.sponsors-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 64px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sponsors-logos img {
+  display: block;
+  height: 72px;
+  width: auto;
+  max-width: min(280px, 100%);
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .sponsors {
+    padding: 48px 20px;
+  }
+  .sponsors-text {
+    margin-bottom: 32px;
+  }
+  .sponsors-logos {
+    gap: 28px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsors-logos {
+    gap: 22px 24px;
+  }
+  .sponsors-logos img {
+    height: 56px;
+  }
+}
