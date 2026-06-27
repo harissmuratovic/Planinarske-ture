@@ -8,20 +8,42 @@ body{
   font-family:'Montserrat', sans-serif;
   background:#f5f5f5;
   color:#111;
+  overflow-x:hidden;
 }
 
 /* NAVBAR */
 
 header{
-  position:absolute;
+  position:fixed;
   top:0;
   left:0;
   width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 60px;
-  z-index:10;
+  padding:12px 60px;
+  z-index:1000;
+  background:transparent;
+  transition:background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* na skrol: header se pojavi (fejduje u bijelo) i ostaje fiksiran */
+header.scrolled{
+  background:#fff;
+  box-shadow:0 2px 14px rgba(0,0,0,0.10);
+}
+
+header.scrolled nav a{
+  color:#16384a;
+}
+
+header.scrolled nav a.active{
+  color:#0e8388;
+}
+
+/* logo: bijel preko heroja, normalan (u boji) kad je header bijel */
+header.scrolled .logo-mark{
+  filter:none;
 }
 
 .logo{
@@ -58,6 +80,10 @@ nav a{
 
 nav a:hover{
   opacity:0.7;
+}
+
+nav a.active{
+  color:#0e8388;
 }
 
 /* HERO */
@@ -402,6 +428,7 @@ nav a:hover{
   margin:0 auto 18px;
 }
 
+
 .connect-title h2{
   font-size:30px;
   font-weight:600;
@@ -443,7 +470,7 @@ nav a:hover{
   padding:0 44px 0 22px;
   border:1.5px solid #7fcbc4;
   border-radius:30px;
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
   font-size:14px;
   color:#333;
   outline:none;
@@ -485,7 +512,7 @@ nav a:hover{
   padding:16px 22px;
   border:1.5px solid #7fcbc4;
   border-radius:20px;
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
   font-size:14px;
   color:#333;
   outline:none;
@@ -508,7 +535,7 @@ nav a:hover{
   border-radius:40px;
   background:#00b7c2;
   color:#fff;
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
   font-size:15px;
   cursor:pointer;
   transition:0.3s;
@@ -690,4 +717,40 @@ nav a:hover{
     font-size:32px;
   }
 
+  /* naslovi sekcija manji na telefonu */
+  .services-title h2,
+  .odt-title h2,
+  .connect-title h2{
+    font-size:20px;
+  }
+
+  /* planinice dosta manje na telefonu — crta ostaje široka kao naslov,
+     a vrhovi se nadovezuju na njen desni kraj */
+  .section-line{
+    width:calc(100% + 63px);   /* širina naslova + 3px + 60px vrhovi */
+    height:30px;
+    margin:-24px 0 26px;
+  }
+
+  .line-peaks{
+    width:60px;
+    height:30px;
+  }
+
+  /* na telefonu je višak 63px, pa je pomak pola toga */
+  .services-title,
+  .odt-title,
+  .connect-title{
+    transform:translateX(-31px);
+  }
+
+}
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }

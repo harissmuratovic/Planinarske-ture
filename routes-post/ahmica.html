@@ -11,6 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/nav-burger.css" />
 </head>
 <body class="routes-post">
 
@@ -20,11 +21,29 @@
       <img class="logo-mark" src="../images/logo-header.webp" alt="Hajla Adventure logo" />
     </div>
 
+
+
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
     <nav>
       <a href="../index.html">POČETNA</a>
       <a href="../blog.html">BLOG</a>
       <a href="../routes.html" class="active">RUTE</a>
-      <a href="#">KONTAKT</a>
+      <a href="../index.html#kontakt">KONTAKT</a>
     </nav>
   </header>
 
@@ -35,7 +54,7 @@
       <div class="route-hero-body">
         <!-- left: route map with the marked trail -->
         <div class="route-hero-map">
-          <img src="../images/routes-images/naslovnaRute.webp" alt="Mapa rute Ahmica" />
+          <img src="../images/routes/Ruta-Ahmica.png" alt="Mapa rute Ahmica" />
         </div>
 
         <!-- right: title, description, CTA -->
@@ -46,7 +65,7 @@
             kroz mješovite šume i prostrane pašnjake do vidikovca s kojeg puca
             pogled na grad u dolini i okolne vrhove Prokletija.
           </p>
-          <button>ZAKAŽI TURU</button>
+          <button onclick="location.href='../schedule.html?tura=Ahmica'">ZAKAŽI TURU</button>
         </div>
       </div>
 
@@ -81,11 +100,11 @@
       <div class="expedition-layout">
         <!-- left: share rail -->
         <aside class="share">
-          <a href="#" class="share-icon" aria-label="Facebook">
+          <span class="share-label">Podijeli:</span>
+          <a href="../social-coming-soon.html?platforma=Facebook" class="share-icon" aria-label="Facebook">
             <img src="../images/facebook.webp" alt="Facebook" />
           </a>
-          <span class="share-label">Podijeli</span>
-          <a href="#" class="share-icon" aria-label="Instagram">
+          <a href="../social-coming-soon.html?platforma=Instagram" class="share-icon" aria-label="Instagram">
             <img src="../images/instagram.webp" alt="Instagram" />
           </a>
         </aside>
@@ -146,7 +165,7 @@
     <section class="cta">
       <span class="deco-ring deco-ring--right" aria-hidden="true"></span>
       <h2>SVIĐA VAM SE?</h2>
-      <button>ZAKAŽI TURU</button>
+      <button onclick="location.href='../schedule.html?tura=Ahmica'">ZAKAŽI TURU</button>
     </section>
 
     <!-- MORE TOURS -->
@@ -230,11 +249,10 @@
       </svg>
 
       <nav class="footer-nav">
-        <a href="#">O nama</a>
-        <a href="#">Usluge</a>
-        <a href="#">Podrška</a>
-        <a href="#">Uslovi korištenja</a>
-        <a href="#">Politika privatnosti</a>
+        <a href="../index.html">Početna</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../routes.html">Rute</a>
+        <a href="../index.html#kontakt">Kontakt</a>
       </nav>
     </div>
 

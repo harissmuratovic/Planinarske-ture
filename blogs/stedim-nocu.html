@@ -12,6 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/nav-burger.css" />
 </head>
 <body>
 
@@ -21,11 +22,29 @@
       <img class="logo-mark" src="../images/logo-header.webp" alt="Hajla Adventure logo" />
     </div>
 
+
+
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
     <nav>
       <a href="../index.html">POČETNA</a>
       <a href="../blog.html" class="active">BLOG</a>
       <a href="../routes.html">RUTE</a>
-      <a href="../schedule.html">KONTAKT</a>
+      <a href="../index.html#kontakt">KONTAKT</a>
     </nav>
   </header>
 
@@ -63,14 +82,11 @@
 
         <!-- SHARE SIDEBAR -->
         <aside class="share">
-          <span class="share-label">Podijeli</span>
-          <a href="#" class="share-icon" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect width="24" height="24" rx="5" fill="currentColor"/>
-              <path fill="#fff" d="M14.6 12.6h1.7l.27-2.2H14.6V9c0-.64.18-1.07 1.1-1.07h1.17V5.96c-.2-.03-.9-.09-1.72-.09-1.7 0-2.86 1.04-2.86 2.94v1.6H10.4v2.2h1.89V20h2.31z"/>
-            </svg>
+          <span class="share-label">Podijeli:</span>
+          <a href="../social-coming-soon.html?platforma=Facebook" class="share-icon" aria-label="Facebook">
+            <img src="../images/facebook.webp" alt="Facebook" />
           </a>
-          <a href="#" class="share-icon" aria-label="Instagram">
+          <a href="../social-coming-soon.html?platforma=Instagram" class="share-icon" aria-label="Instagram">
             <img src="../images/insta.webp" alt="Instagram" />
           </a>
         </aside>
@@ -189,14 +205,7 @@
           </div>
         </a>
       </div>
-
-      <!-- Pagination -->
-      <div class="read-pagination">
-        <span class="page-bar active"></span>
-        <span class="page-bar"></span>
-        <span class="page-bar"></span>
-      </div>
-    </section>
+      </section>
 
   </main>
 
@@ -213,11 +222,10 @@
       </svg>
 
       <nav class="footer-nav">
-        <a href="#">O nama</a>
-        <a href="#">Usluge</a>
-        <a href="#">Podrška</a>
-        <a href="#">Uslovi korištenja</a>
-        <a href="#">Politika privatnosti</a>
+        <a href="../index.html">Početna</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../routes.html">Rute</a>
+        <a href="../index.html#kontakt">Kontakt</a>
       </nav>
     </div>
 

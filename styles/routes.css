@@ -13,15 +13,27 @@ body{
 button,
 input,
 textarea{
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
 }
 
-/* ===== HEADER (copied from blog.css) ===== */
+/* ===== HEADER (transparentan na vrhu, fejduje u bijeli na skrol — kao na početnoj) ===== */
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 60px;
+  padding:12px 60px;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:transparent;
+  transition:background 0.35s ease, box-shadow 0.35s ease;
+  z-index:1000;
+}
+
+header.scrolled{
+  background:#fff;
+  box-shadow:0 2px 14px rgba(0,0,0,0.10);
 }
 
 .logo{
@@ -29,12 +41,17 @@ header{
   align-items:center;
 }
 
-/* Header logo (already coloured PNG) */
+/* Header logo: bijel preko heroja, u boji kad je header bijel */
 .logo-mark{
   display:block;
   width:62px;
   height:62px;
   object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+header.scrolled .logo-mark{
+  filter:none;
 }
 
 /* PNG logo used as a mask so it can be tinted any colour */
@@ -55,12 +72,16 @@ nav{
 }
 
 nav a{
-  color:#16384a;
+  color:#fff;
   text-decoration:none;
   font-size:16px;
   font-weight:500;
   letter-spacing:2px;
   transition:0.3s;
+}
+
+header.scrolled nav a{
+  color:#16384a;
 }
 
 nav a:hover,
@@ -122,21 +143,21 @@ nav a.active{
   transform:translateX(-50%);
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:18px;
   z-index:2;
 }
 
 .hero-dot{
-  width:18px;
-  height:5px;
-  border-radius:3px;
+  width:36px;
+  height:10px;
+  border-radius:6px;
   background:rgba(255,255,255,0.85);
   cursor:pointer;
   transition:width 0.4s ease, background 0.4s ease;
 }
 
 .hero-dot.is-active{
-  width:42px;
+  width:84px;
   background:#2aa3d4;
 }
 
@@ -287,7 +308,7 @@ nav a.active{
 }
 
 .read-more{
-  font-size:12px;
+  font-size:18px;
   font-weight:600;
   letter-spacing:0.5px;
   color:#16384a;
@@ -301,11 +322,11 @@ nav a.active{
 .schedule-btn{
   padding:12px 24px;
   border:none;
-  border-radius:8px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
-  font-size:13px;
-  font-weight:600;
+  font-size:18px;
+  font-weight:400;
   cursor:pointer;
   transition:0.3s;
 }
@@ -361,11 +382,11 @@ nav a.active{
 .custom-btn{
   padding:14px 40px;
   border:none;
-  border-radius:8px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
   font-size:15px;
-  font-weight:700;
+  font-weight:400;
   cursor:pointer;
   transition:0.3s;
 }
@@ -549,4 +570,14 @@ nav a.active{
     padding:26px 22px;
     gap:14px 24px;
   }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }

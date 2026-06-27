@@ -1,0 +1,293 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Montserrat', sans-serif;
+  color:#16384a;
+  overflow-x:hidden;
+}
+
+/* ===== HEADER (same as on the other pages) ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 60px;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+}
+
+.logo-mark{
+  display:block;
+  width:62px;
+  height:62px;
+  object-fit:contain;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:45px;
+  padding-left:70px;
+}
+
+nav a{
+  color:#16384a;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:500;
+  letter-spacing:2px;
+  transition:0.3s;
+}
+
+nav a:hover,
+nav a.active{
+  color:#0e8388;
+}
+
+/* ===== CONFIRMATION ===== */
+.confirm{
+  position:relative;
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 24px;
+  background-image:url('../images/mountain-background.webp');
+  background-size:cover;
+  background-position:center;
+  overflow:hidden;
+}
+
+.confirm::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, rgba(20,52,80,0.55), rgba(20,52,80,0.70));
+  z-index:1;
+}
+
+.confirm-content{
+  position:relative;
+  z-index:2;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:30px;
+}
+
+.confirm-content h1{
+  font-size:46px;
+  font-weight:800;
+  letter-spacing:2px;
+  line-height:1.2;
+}
+
+.confirm-badge{
+  width:140px;
+  height:140px;
+}
+
+.confirm-badge svg{
+  width:100%;
+  height:100%;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,0.30));
+}
+
+.confirm-text{
+  font-size:18px;
+  font-weight:400;
+  letter-spacing:0.5px;
+}
+
+.confirm-btn{
+  margin-top:6px;
+  padding:14px 44px;
+  border-radius:40px;
+  background:#2fae8f;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.confirm-btn:hover{
+  background:#27947a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  header{
+    padding:18px 40px;
+  }
+
+  nav{
+    gap:32px;
+    padding-left:40px;
+  }
+}
+
+@media(max-width:900px){
+  header{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px 24px;
+    padding:18px 30px;
+  }
+
+  nav{
+    gap:24px;
+    padding-left:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .confirm-content h1{
+    font-size:34px;
+  }
+}
+
+@media(max-width:600px){
+  header{
+    flex-direction:column;
+    gap:18px;
+    padding:18px 20px;
+  }
+
+  nav{
+    border-left:none;
+    padding-left:0;
+    gap:14px 18px;
+  }
+
+  .confirm-content h1{
+    font-size:27px;
+  }
+
+  .confirm-badge{
+    width:110px;
+    height:110px;
+  }
+}
+
+/* ===== FOOTER (same as on the other pages) ===== */
+.footer{
+  margin-top:0;
+}
+
+.footer-body{
+  position:relative;
+  height:215px;
+  background-color:#008080;
+  background-image:url('../images/footer.webp');
+  background-size:100% 205px;
+  background-position:bottom center;
+  background-repeat:no-repeat;
+}
+
+.footer-logo{
+  position:absolute;
+  top:24px;
+  left:12%;
+  width:62px;
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+
+.footer-logo .footer-logo-mark{
+  width:62px;
+  height:62px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+.footer-peaks{
+  display:none;
+}
+
+.footer-nav{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:30px;
+  display:flex;
+  justify-content:center;
+  gap:55px;
+  flex-wrap:wrap;
+  padding:0 20px;
+}
+
+.footer-nav a{
+  color:#333;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-nav a:hover{
+  color:#0e8d92;
+}
+
+.footer-copy{
+  text-align:center;
+  font-size:13px;
+  color:#444;
+  padding:16px;
+  background:#fff;
+}
+
+@media(max-width:820px){
+  .footer-body{
+    height:auto;
+    background-image:none;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .footer-logo{
+    position:static;
+    margin:34px auto 24px;
+  }
+
+  .footer-peaks{
+    display:block;
+    width:100%;
+    height:130px;
+    margin-bottom:-1px;
+  }
+
+  .footer-nav{
+    position:static;
+    background:#fff;
+    margin:0;
+    padding:26px 22px;
+    gap:14px 24px;
+  }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
+}

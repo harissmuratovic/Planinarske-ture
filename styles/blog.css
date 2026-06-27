@@ -17,7 +17,11 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 60px;
+  padding:12px 60px;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
@@ -152,7 +156,7 @@ main{
   align-self:flex-start;
   padding:14px 34px;
   border:none;
-  border-radius:30px;
+  border-radius:40px;
   background:#2aa3d4;
   color:white;
   font-size:15px;
@@ -779,7 +783,7 @@ main{
 .route-hero-text p{
   font-family:'Montserrat', sans-serif;
   font-size:20px;
-  font-weight:600;
+  font-weight:400;
   line-height:34px;
   letter-spacing:0.06em;          /* 6% */
   text-transform:uppercase;
@@ -790,12 +794,12 @@ main{
   border:none;
   background:#0e8388;
   color:#fff;
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
   font-size:14px;
   font-weight:600;
   letter-spacing:2px;
   padding:15px 34px;
-  border-radius:8px;
+  border-radius:40px;
   cursor:pointer;
   transition:0.3s;
 }
@@ -1027,7 +1031,7 @@ main{
   border:none;
   background:#0e8388;
   color:#fff;
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
   font-size:16px;
   font-weight:600;
   letter-spacing:2px;
@@ -1072,6 +1076,7 @@ main{
    (main's bottom padding + the footer's top margin) so the topo background
    runs straight into the footer */
 .routes-post main{
+  padding-top:0;
   padding-bottom:0;
 }
 .routes-post .footer{
@@ -1171,7 +1176,7 @@ main{
   font-weight:600;
   letter-spacing:1.5px;
   padding:13px 0;
-  border-radius:30px;
+  border-radius:40px;
   transition:0.3s;
 }
 .tour-btn:hover{
@@ -1185,4 +1190,14 @@ main{
   .tour-card--featured{
     transform:none;
   }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }
