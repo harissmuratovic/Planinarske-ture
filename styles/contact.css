@@ -15,7 +15,7 @@ button,
 input,
 textarea,
 select{
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
 }
 
 /* ===== HEADER (copied from routes.css) ===== */
@@ -464,7 +464,7 @@ nav a.active{
 .guide-btn{
   padding:9px 28px;
   border:none;
-  border-radius:7px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
   font-size:13px;
@@ -500,7 +500,7 @@ nav a.active{
 .ready-btn{
   padding:15px 70px;
   border:none;
-  border-radius:9px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
   font-size:16px;
@@ -706,4 +706,14 @@ nav a.active{
     padding:26px 22px;
     gap:14px 24px;
   }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }

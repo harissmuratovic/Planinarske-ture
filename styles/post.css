@@ -284,7 +284,7 @@ main{
 .article-cta button{
   padding:14px 34px;
   border:none;
-  border-radius:30px;
+  border-radius:40px;
   background:#2aa3d4;
   color:#fff;
   font-size:15px;
@@ -372,10 +372,11 @@ main{
   height:52px;
   max-width:100%;
   border:none;
-  border-radius:20px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
-  font-size:14px;
+  font-family:'Montserrat', sans-serif;
+  font-size:20px;
   font-weight:500;
   cursor:pointer;
   transition:0.3s;
@@ -443,6 +444,10 @@ main{
   line-height:1;        /* 100% */
   letter-spacing:0;
   text-transform:uppercase;
+}
+
+.read-card .post-meta .author{
+  text-transform:none;
 }
 
 /* Pagination */
@@ -555,4 +560,14 @@ main{
     grid-template-columns:1fr;
     gap:24px;
   }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }

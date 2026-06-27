@@ -13,7 +13,7 @@ body{
 button,
 input,
 textarea{
-  font-family:inherit;
+  font-family:'Montserrat', sans-serif;
 }
 
 /* ===== HEADER (copied from blog.css) ===== */
@@ -122,21 +122,21 @@ nav a.active{
   transform:translateX(-50%);
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:18px;
   z-index:2;
 }
 
 .hero-dot{
-  width:18px;
-  height:5px;
-  border-radius:3px;
+  width:36px;
+  height:10px;
+  border-radius:6px;
   background:rgba(255,255,255,0.85);
   cursor:pointer;
   transition:width 0.4s ease, background 0.4s ease;
 }
 
 .hero-dot.is-active{
-  width:42px;
+  width:84px;
   background:#2aa3d4;
 }
 
@@ -287,7 +287,7 @@ nav a.active{
 }
 
 .read-more{
-  font-size:12px;
+  font-size:18px;
   font-weight:600;
   letter-spacing:0.5px;
   color:#16384a;
@@ -301,11 +301,11 @@ nav a.active{
 .schedule-btn{
   padding:12px 24px;
   border:none;
-  border-radius:8px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
-  font-size:13px;
-  font-weight:600;
+  font-size:18px;
+  font-weight:400;
   cursor:pointer;
   transition:0.3s;
 }
@@ -361,11 +361,11 @@ nav a.active{
 .custom-btn{
   padding:14px 40px;
   border:none;
-  border-radius:8px;
+  border-radius:40px;
   background:#0e8388;
   color:#fff;
   font-size:15px;
-  font-weight:700;
+  font-weight:400;
   cursor:pointer;
   transition:0.3s;
 }
@@ -549,4 +549,14 @@ nav a.active{
     padding:26px 22px;
     gap:14px 24px;
   }
+}
+
+/* Force Montserrat on all form controls (buttons, inputs, etc.) */
+button,
+input,
+textarea,
+select,
+optgroup,
+option{
+  font-family:'Montserrat', sans-serif;
 }
