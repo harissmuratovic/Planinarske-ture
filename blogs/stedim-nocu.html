@@ -12,6 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/nav-burger.css" />
 </head>
 <body>
 
@@ -21,11 +22,29 @@
       <img class="logo-mark" src="../images/logo-header.webp" alt="Hajla Adventure logo" />
     </div>
 
+
+
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
     <nav>
       <a href="../index.html">POČETNA</a>
       <a href="../blog.html" class="active">BLOG</a>
       <a href="../routes.html">RUTE</a>
-      <a href="../schedule.html">KONTAKT</a>
+      <a href="../index.html#kontakt">KONTAKT</a>
     </nav>
   </header>
 
@@ -63,7 +82,7 @@
 
         <!-- SHARE SIDEBAR -->
         <aside class="share">
-          <span class="share-label">Podijeli</span>
+          <span class="share-label">Podijeli:</span>
           <a href="../social-coming-soon.html?platforma=Facebook" class="share-icon" aria-label="Facebook">
             <img src="../images/facebook.webp" alt="Facebook" />
           </a>
@@ -203,11 +222,10 @@
       </svg>
 
       <nav class="footer-nav">
-        <a href="#">O nama</a>
-        <a href="#">Usluge</a>
-        <a href="#">Podrška</a>
-        <a href="#">Uslovi korištenja</a>
-        <a href="#">Politika privatnosti</a>
+        <a href="../index.html">Početna</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../routes.html">Rute</a>
+        <a href="../index.html#kontakt">Kontakt</a>
       </nav>
     </div>
 

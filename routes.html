@@ -12,6 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/nav-burger.css" />
 </head>
 
 <body>
@@ -22,11 +23,29 @@
       <img class="logo-mark" src="images/logo-header.webp" alt="Hajla Adventure logo" />
     </div>
 
+
+
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
     <nav>
       <a href="index.html">POČETNA</a>
       <a href="blog.html">BLOG</a>
       <a href="routes.html" class="active">RUTE</a>
-      <a href="schedule.html">KONTAKT</a>
+      <a href="index.html#kontakt">KONTAKT</a>
     </nav>
   </header>
 
@@ -67,7 +86,7 @@
             <div class="tour-stats">
               <span><img src="images/routes-images/lokacija.webp" alt="" /> 8.2 km</span>
               <span><img src="images/routes-images/strelice.webp" alt="" /> 1300 m</span>
-              <span><img src="images/routes-images/sat.webp" alt="" /> 2 dana</span>
+              <span><img src="images/routes-images/sat.webp" alt="" /> 10h</span>
             </div>
           </div>
           
@@ -81,7 +100,7 @@
           
           <div class="tour-card-bottom">
             <a href="routes-post/hajla.html" class="read-more">PROČITAJ VIŠE...</a>
-            <button class="schedule-btn">ZAKAŽI TURU</button>
+            <button class="schedule-btn" onclick="location.href='schedule.html?tura=Hajla'">ZAKAŽI TURU</button>
           </div>
         </div>
         <div class="tour-image">
@@ -111,7 +130,7 @@
           
           <div class="tour-card-bottom">
             <a href="routes-post/ahmica.html" class="read-more">PROČITAJ VIŠE...</a>
-            <button class="schedule-btn">ZAKAŽI TURU</button>
+            <button class="schedule-btn" onclick="location.href='schedule.html?tura=Ahmica'">ZAKAŽI TURU</button>
           </div>
         </div>
         <div class="tour-image">
@@ -141,7 +160,7 @@
           
           <div class="tour-card-bottom">
             <a href="routes-post/rusolija.html" class="read-more">PROČITAJ VIŠE...</a>
-            <button class="schedule-btn">ZAKAŽI TURU</button>
+            <button class="schedule-btn" onclick="location.href='schedule.html?tura=Rusolija'">ZAKAŽI TURU</button>
           </div>
         </div>
         <div class="tour-image">
@@ -176,11 +195,10 @@
       </svg>
 
       <nav class="footer-nav">
-        <a href="#">O nama</a>
-        <a href="#">Usluge</a>
-        <a href="#">Podrška</a>
-        <a href="#">Uslovi korištenja</a>
-        <a href="#">Politika privatnosti</a>
+        <a href="index.html">Početna</a>
+        <a href="blog.html">Blog</a>
+        <a href="routes.html">Rute</a>
+        <a href="index.html#kontakt">Kontakt</a>
       </nav>
     </div>
 
@@ -188,6 +206,21 @@
   </footer>
 
   <script src="js/routes.js"></script>
+
+  <script>
+    (function () {
+      var header = document.querySelector('header');
+      function onScroll() {
+        if (window.scrollY > 40) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 
 </body>
 

@@ -12,6 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/nav-burger.css" />
 </head>
 
 <body>
@@ -22,11 +23,29 @@
       <img class="logo-mark" src="images/logo-header.webp" alt="Hajla Adventure logo" />
     </div>
 
+
+
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
     <nav>
       <a href="index.html">POČETNA</a>
       <a href="blog.html">BLOG</a>
       <a href="routes.html">RUTE</a>
-      <a href="schedule.html" class="active">KONTAKT</a>
+      <a href="index.html#kontakt">KONTAKT</a>
     </nav>
   </header>
 
@@ -37,17 +56,17 @@
       <div class="hero-inner">
 
         <div class="hero-map">
-          <img src="images/kontakti/map.webp" alt="Ruta — Rusolija" />
+          <img id="hero-map-img" src="images/routes/Ruta-Rusolija.png" alt="Ruta — Rusolija" />
         </div>
 
         <div class="hero-info">
           <div class="hero-heading">
-            <h1>ODABRALI STE<br />RUSOLIJU</h1>
+            <h1>ODABRALI STE<br /><span id="hero-tura">RUSOLIJU</span></h1>
           </div>
           <div class="hero-stats">
-            <span><img src="images/routes-images/lokacija.webp" alt="" /> 8.2 KM</span>
-            <span><img src="images/routes-images/strelice.webp" alt="" /> 1300 M</span>
-            <span><img src="images/routes-images/sat.webp" alt="" /> 2 DANA</span>
+            <span><img src="images/routes-images/lokacija.webp" alt="" /> <span id="hero-km">8.2 KM</span></span>
+            <span><img src="images/routes-images/strelice.webp" alt="" /> <span id="hero-visina">1300 M</span></span>
+            <span><img src="images/routes-images/sat.webp" alt="" /> <span id="hero-trajanje">2 DANA</span></span>
           </div>
         </div>
 
@@ -57,7 +76,7 @@
     <!-- BOOKING -->
     <section class="booking">
 
-      <h2 class="booking-title">Rezervišite svoju turu za <br /><span>Rusoliju</span></h2>
+      <h2 class="booking-title">Rezervišite svoju turu za <br /><span id="booking-tura">Rusoliju</span></h2>
 
       <form class="booking-form" onsubmit="return false">
 
@@ -221,11 +240,10 @@
       </svg>
 
       <nav class="footer-nav">
-        <a href="#">O nama</a>
-        <a href="#">Usluge</a>
-        <a href="#">Podrška</a>
-        <a href="#">Uslovi korištenja</a>
-        <a href="#">Politika privatnosti</a>
+        <a href="index.html">Početna</a>
+        <a href="blog.html">Blog</a>
+        <a href="routes.html">Rute</a>
+        <a href="index.html#kontakt">Kontakt</a>
       </nav>
     </div>
 
@@ -241,6 +259,27 @@
         d.classList.add('is-selected');
       });
     });
+
+    // hero + booking title/stats reflect the chosen tour (?tura=Hajla/Ahmica/Rusolija)
+    (function () {
+      var ture = {
+        Hajla:    { akuzativ: 'Hajlu',    km: '8.2 KM', visina: '1300 M', trajanje: '10H',   mapa: 'images/routes/Ruta-Hajla.png' },
+        Ahmica:   { akuzativ: 'Ahmicu',   km: '10 KM',  visina: '720 M',  trajanje: '6 SATI', mapa: 'images/routes/Ruta-Ahmica.png' },
+        Rusolija: { akuzativ: 'Rusoliju', km: '12 KM',  visina: '850 M',  trajanje: '7 SATI', mapa: 'images/routes/Ruta-Rusolija.png' }
+      };
+      var tura = new URLSearchParams(window.location.search).get('tura');
+      var t = tura && ture[tura];
+      if (t) {
+        document.getElementById('hero-tura').textContent = t.akuzativ.toUpperCase();
+        document.getElementById('hero-km').textContent = t.km;
+        document.getElementById('hero-visina').textContent = t.visina;
+        document.getElementById('hero-trajanje').textContent = t.trajanje;
+        document.getElementById('booking-tura').textContent = t.akuzativ;
+        var mapImg = document.getElementById('hero-map-img');
+        mapImg.src = t.mapa;
+        mapImg.alt = 'Ruta — ' + tura;
+      }
+    })();
 
     // guide selection
     document.querySelectorAll('.guide-btn').forEach(function (b) {

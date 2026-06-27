@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+  <link rel="stylesheet" href="styles/nav-burger.css" />
 </head>
 
 <body>
@@ -24,11 +25,29 @@
             <img class="logo-mark" src="images/logo-header.webp" alt="Hajla Adventure logo" />
         </div>
 
+
+
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle-cb" />
+
+
+
+
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Meni"><span></span><span></span><span></span></label>
+
+
+
+
+        <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
+
+
+
         <nav>
             <a href="index.html" class="active">POČETNA</a>
             <a href="blog.html">BLOG</a>
             <a href="routes.html">RUTE</a>
-            <a href="schedule.html">KONTAKT</a>
+            <a href="index.html#kontakt">KONTAKT</a>
         </nav>
     </header>
 
@@ -50,7 +69,7 @@
                     </h1>
                 </div>
 
-                <button>Zakaži turu</button>
+                <button onclick="location.href='routes.html'">ZAKAŽI TURU</button>
             </div>
 
         </section>
@@ -234,7 +253,7 @@
                 </div>
 
                 <div class="odt-actions">
-                    <button>ZAKAŽI TURU</button>
+                    <button onclick="location.href='routes.html'">ZAKAŽI TURU</button>
                     <a href="routes.html">SAZNAJ VIŠE...</a>
                 </div>
 
@@ -244,12 +263,12 @@
 
         <!-- CONNECT WITH US -->
 
-        <section class="connect">
+        <section class="connect" id="kontakt">
 
             <div class="connect-card">
 
                 <div class="connect-title">
-                    <h2 class="section-title">POVEŽITE SE S NAMA</h2>
+                    <h2 class="section-title">KONTAKTIRAJTE NAS</h2>
                     <div class="section-line">
                         <span class="line-flat"></span>
                         <svg class="line-peaks" viewBox="0 0 111 48" preserveAspectRatio="none" fill="none" stroke="#16384a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -348,16 +367,30 @@
         </svg>
 
             <nav class="footer-nav">
-                <a href="#">O nama</a>
-                <a href="#">Usluge</a>
-                <a href="#">Podrška</a>
-                <a href="#">Uslovi korištenja</a>
-                <a href="#">Politika privatnosti</a>
-            </nav>
+        <a href="index.html">Početna</a>
+        <a href="blog.html">Blog</a>
+        <a href="routes.html">Rute</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
         </div>
 
         <p class="footer-copy">&copy; 2023 Hamza Ganić, Sva prava zadržana</p>
     </footer>
+
+    <script>
+      (function () {
+        var header = document.querySelector('header');
+        function onScroll() {
+          if (window.scrollY > 40) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
 
 </body>
 
