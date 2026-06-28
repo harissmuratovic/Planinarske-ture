@@ -97,23 +97,29 @@
 
       <h2 class="booking-title">Rezervišite svoju turu za <br /><span id="booking-tura">Rusoliju</span></h2>
 
+      <p class="required-note"><span class="req">*</span> Polja označena zvjezdicom su obavezna</p>
+
       <form class="booking-form" onsubmit="return false">
 
         <div class="bf-left">
           <div class="bf-pill">
-            <input type="text" placeholder="Ime i prezime *" />
+            <input type="text" placeholder="Ime i prezime" />
+            <span class="req">*</span>
             <span class="bf-info" title="Unesite vaše ime i prezime">i</span>
           </div>
           <div class="bf-pill">
-            <input type="tel" placeholder="Broj telefona *" />
+            <input type="tel" inputmode="tel" placeholder="Broj telefona" />
+            <span class="req">*</span>
             <span class="bf-info" title="Unesite vaš broj telefona">i</span>
           </div>
           <div class="bf-pill">
-            <input type="email" placeholder="Email adresa *" />
+            <input type="email" placeholder="Email adresa" />
+            <span class="req">*</span>
             <span class="bf-info" title="Unesite vašu email adresu">i</span>
           </div>
           <div class="bf-pill">
-            <input type="number" min="1" placeholder="Broj osoba *" />
+            <input type="number" inputmode="numeric" min="1" step="1" placeholder="Broj osoba" />
+            <span class="req">*</span>
             <span class="bf-info" title="Unesite broj osoba">i</span>
           </div>
         </div>
@@ -133,19 +139,26 @@
         </div>
 
         <div class="date-card">
-          <h3>Odaberite datum</h3>
+          <h3>Odaberite datum <span class="req">*</span></h3>
 
-          <div class="cal">
+          <div class="cal is-locked">
+            <button type="button" class="cal-unlock">Unesi datum</button>
             <div class="cal-head">
-              <select aria-label="Mjesec">
-                <option>Januar</option><option>Februar</option><option>Mart</option>
-                <option>April</option><option>Maj</option><option>Juni</option>
-                <option>Juli</option><option>August</option><option>Septembar</option>
-                <option>Oktobar</option><option selected>Novembar</option><option>Decembar</option>
-              </select>
-              <select aria-label="Godina">
-                <option>2023</option><option>2024</option><option>2025</option><option>2026</option>
-              </select>
+              <span class="sel-tip">
+                <select aria-label="Mjesec" id="cal-month">
+                  <option value="" selected disabled hidden>Mjesec</option>
+                  <option>Januar</option><option>Februar</option><option>Mart</option>
+                  <option>April</option><option>Maj</option><option>Juni</option>
+                  <option>Juli</option><option>August</option><option>Septembar</option>
+                  <option>Oktobar</option><option>Novembar</option><option>Decembar</option>
+                </select>
+              </span>
+              <span class="sel-tip">
+                <select aria-label="Godina" id="cal-year">
+                  <option value="" selected disabled hidden>Godina</option>
+                  <!-- godine se popunjavaju skriptom: od tekuće godine pa nadalje -->
+                </select>
+              </span>
             </div>
 
             <div class="cal-grid">
@@ -200,7 +213,7 @@
     <!-- CHOOSE GUIDE -->
     <section class="guides">
 
-      <h2 class="guides-title">Odaberite vodiča</h2>
+      <h2 class="guides-title">Odaberite vodiča <span class="req">*</span></h2>
 
       <div class="guides-grid">
 
@@ -241,7 +254,7 @@
     <!-- READY CTA -->
     <section class="ready">
       <h2>JESTE LI SPREMNI ZA<br />AVANTURU?</h2>
-      <button class="ready-btn" type="button">NARAVNO</button>
+      <button class="ready-btn" type="button" id="ready-btn">NARAVNO</button>
     </section>
 
   </main>
@@ -287,6 +300,186 @@
   </footer>
 
   <script>
+    // form validacija + omogućavanje dugmeta "NARAVNO" tek kad je sve validno
+    (function () {
+      var form = document.querySelector('.booking-form');
+      if (!form) return;
+
+      var name = form.querySelector('.bf-left input[type="text"]');
+      var phone = form.querySelector('input[type="tel"]');
+      var persons = form.querySelector('input[type="number"]');
+      var email = form.querySelector('input[type="email"]');
+      var month = document.getElementById('cal-month');
+      var year = document.getElementById('cal-year');
+      var btn = document.getElementById('ready-btn');
+
+      // dozvoljeni raspon: od danas do tačno godinu dana unaprijed
+      var now = new Date();
+      var curYear = now.getFullYear();
+      var curMonth = now.getMonth() + 1; // 1-12
+      var curDay = now.getDate();
+      var days = Array.prototype.slice.call(document.querySelectorAll('.cal-day'));
+
+      // ponudi tekuću godinu i narednu (max godinu dana unaprijed)
+      if (year) {
+        for (var y = curYear; y <= curYear + 1; y++) {
+          var opt = document.createElement('option');
+          opt.textContent = y;
+          year.appendChild(opt);
+        }
+      }
+
+      // onemogući mjesece izvan prozora [danas, danas + 1 god.]
+      function syncMonths() {
+        if (!month || !year) return;
+        var selYear = parseInt(year.value, 10);
+        Array.prototype.forEach.call(month.options, function (o, i) {
+          if (i === 0) return;            // placeholder
+          var m = i;                      // Januar=1 ... Decembar=12
+          var disabled = false;
+          if (selYear === curYear && m < curMonth) disabled = true;       // prošli mjeseci
+          if (selYear === curYear + 1 && m > curMonth) disabled = true;   // više od godinu dana
+          o.disabled = disabled;
+        });
+        // ako je izabrani mjesec postao nedozvoljen, poništi izbor
+        if (month.selectedIndex > 0 && month.options[month.selectedIndex].disabled) {
+          month.selectedIndex = 0;
+        }
+      }
+
+      // onemogući dane koji su prošli ili prelaze prozor od godinu dana
+      function syncDays() {
+        var selYear = parseInt(year.value, 10);
+        var selMonth = month ? month.selectedIndex : 0; // 1-12 ili 0
+        days.forEach(function (d) {
+          var n = parseInt(d.textContent, 10);
+          var tooEarly = (selYear === curYear && selMonth === curMonth && n < curDay);
+          var tooLate = (selYear === curYear + 1 && selMonth === curMonth && n > curDay);
+          var off = tooEarly || tooLate;
+          d.disabled = off;
+          if (off) d.classList.remove('is-selected');
+        });
+      }
+
+      // pojedinačne provjere valjanosti
+      function nameOk()    { return name && name.value.trim().length > 1; }
+      function phoneOk()   { return phone && (phone.value.replace(/\D/g, '').length >= 6); }
+      function emailOk()   { var v = email ? email.value.trim() : ''; return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) && v.length >= 9; }
+      function personsOk() { return persons && parseInt(persons.value, 10) >= 1; }
+      function monthOk()   { return month && month.value !== ''; }
+      function yearOk()    { return year && year.value !== ''; }
+      function guideOk()   { return !!document.querySelector('.guide-card.is-chosen'); }
+
+      // redoslijed obaveznih polja (odozgo prema dolje na stranici)
+      function requiredChecks() {
+        return [
+          { ok: nameOk,    host: name && name.closest('.bf-pill'),       focus: name },
+          { ok: phoneOk,   host: phone && phone.closest('.bf-pill'),     focus: phone },
+          { ok: emailOk,   host: email && email.closest('.bf-pill'),     focus: email },
+          { ok: personsOk, host: persons && persons.closest('.bf-pill'), focus: persons },
+          { ok: monthOk,   host: month && month.closest('.sel-tip'),     focus: month, date: true },
+          { ok: yearOk,    host: year && year.closest('.sel-tip'),       focus: year, date: true },
+          { ok: guideOk,   host: document.querySelector('.guides-grid'), focus: document.querySelector('.guide-btn') }
+        ];
+      }
+
+      // zatreperi polje crveno na ~1 sekundu
+      function flash(el) {
+        if (!el) return;
+        el.classList.remove('flash-error');
+        void el.offsetWidth;        // restart CSS animacije
+        el.classList.add('flash-error');
+        setTimeout(function () { el.classList.remove('flash-error'); }, 1000);
+      }
+
+      window.updateReadyButton = function () {}; // zadržano radi kompatibilnosti
+
+      // telefon: dozvoli samo cifre i uobičajene znakove (+, razmak, -, zagrade)
+      if (phone) {
+        phone.addEventListener('input', function () {
+          var cleaned = phone.value.replace(/[^0-9+\-()\s]/g, '');
+          if (cleaned !== phone.value) phone.value = cleaned;
+        });
+      }
+
+      // broj osoba: dozvoli samo cifre
+      if (persons) {
+        persons.addEventListener('input', function () {
+          var cleaned = persons.value.replace(/\D/g, '');
+          if (cleaned !== persons.value) persons.value = cleaned;
+        });
+        // blokiraj 'e', '+', '-', '.' koje type=number inače propušta
+        persons.addEventListener('keydown', function (e) {
+          if (['e', 'E', '+', '-', '.', ','].indexOf(e.key) !== -1) e.preventDefault();
+        });
+      }
+
+      // email: mora sadržavati "@", validan format i najmanje 9 karaktera
+      if (email) {
+        var pill = email.closest('.bf-pill') || email.parentNode;
+        var msg = document.createElement('span');
+        msg.className = 'bf-error';
+        pill.insertAdjacentElement('afterend', msg);
+        msg.style.display = 'none';
+
+        email.addEventListener('input', function () {
+          var val = email.value.trim();
+          var text = '';
+          if (val !== '' && !emailOk()) {
+            if (val.indexOf('@') === -1) text = 'Email adresa mora sadržavati znak "@".';
+            else if (val.length < 9) text = 'Email adresa mora imati najmanje 9 karaktera.';
+            else text = 'Unesite ispravnu email adresu.';
+          }
+          email.setCustomValidity(text);
+          email.classList.toggle('is-invalid', text !== '');
+          msg.textContent = text;
+          msg.style.display = text !== '' ? 'block' : 'none';
+        });
+      }
+
+      // promjena godine/mjeseca osvježava dozvoljene mjesece/dane
+      if (year) {
+        year.addEventListener('change', function () { syncMonths(); syncDays(); });
+      }
+      if (month) {
+        month.addEventListener('change', function () { syncDays(); });
+      }
+
+      // kalendar je zamućen dok korisnik ne klikne "Unesi datum"
+      var cal = document.querySelector('.cal');
+      var unlock = document.querySelector('.cal-unlock');
+      if (cal && unlock) {
+        unlock.addEventListener('click', function () { cal.classList.remove('is-locked'); });
+      }
+
+      // klik na "NARAVNO": ako neko obavezno polje nije popunjeno, skoči
+      // na prvo takvo polje, fokusiraj ga i zatreperi crveno na 1 sekundu
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var checks = requiredChecks();
+          var first = null;
+          checks.forEach(function (c) {
+            if (c.ok()) return;
+            if (c.date && cal) cal.classList.remove('is-locked'); // otključaj kalendar
+            if (c.host) flash(c.host);                            // zatreperi svako nepopunjeno polje
+            if (!first) first = c;                                // zapamti prvo nepopunjeno
+          });
+          if (first) {
+            if (first.host) first.host.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (first.focus) {
+              try { first.focus.focus({ preventScroll: true }); } catch (e) { first.focus.focus(); }
+            }
+            return;
+          }
+          // sva polja validna — vodi na stranicu potvrde rezervacije
+          window.location.href = 'schedule-confiramtion-page.html';
+        });
+      }
+
+      syncMonths();
+      syncDays();
+    })();
+
     // calendar day selection
     document.querySelectorAll('.cal-day').forEach(function (d) {
       d.addEventListener('click', function () {
@@ -327,6 +520,8 @@
         document.querySelectorAll('.guide-btn').forEach(function (o) {
           if (o !== b) o.textContent = 'Odaberi';
         });
+        // odabir vodiča je obavezan — ponovo provjeri da li dugme treba omogućiti
+        if (window.updateReadyButton) window.updateReadyButton();
       });
     });
 
