@@ -420,13 +420,17 @@ main{
   display:block;
 }
 
+.read-card-body{
+  min-width:0;          /* dozvoli da se tekstualna kolona suzi i tekst se prelomi */
+}
+
 .read-card-body h4{
-  width:258px;
-  max-width:100%;
+  width:auto;
+  max-width:258px;
   font-family:'Montserrat', sans-serif;
   font-weight:600;
   font-size:20px;
-  line-height:1;        /* 100% */
+  line-height:1.2;      /* malo zraka kad se naslov prelomi u više redova */
   letter-spacing:0;
   color:#16384a;
   margin-bottom:10px;
