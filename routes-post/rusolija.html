@@ -117,15 +117,6 @@
 
       <div class="expedition-layout">
         <!-- left: share rail -->
-        <aside class="share">
-          <span class="share-label">Podijeli:</span>
-          <a href="../social-coming-soon.html?platforma=Facebook" class="share-icon" aria-label="Facebook">
-            <img src="../images/facebook.webp" alt="Facebook" />
-          </a>
-          <a href="../social-coming-soon.html?platforma=Instagram" class="share-icon" aria-label="Instagram">
-            <img src="../images/instagram.webp" alt="Instagram" />
-          </a>
-        </aside>
 
         <!-- right: article body -->
         <div class="expedition-body">
@@ -292,6 +283,17 @@
 
     <p class="footer-copy">&copy; 2023 Hamza Ganić, Sva prava zadržana</p>
   </footer>
+  <script>
+    (function () {
+      var header = document.querySelector("header");
+      function onScroll() {
+        if (window.scrollY > 40) { header.classList.add("scrolled"); }
+        else { header.classList.remove("scrolled"); }
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 
 </body>
 </html>

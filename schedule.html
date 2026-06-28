@@ -206,9 +206,9 @@
 
         <article class="guide-card">
           <div class="guide-avatar">
-            <img src="images/kontakti/celavi.webp" alt="Sead Sadiković" />
+            <img src="images/kontakti/celavi.webp" alt="Sead Muratović" />
           </div>
-          <h3>Sead Sadiković</h3>
+          <h3>Sead Muratović</h3>
           <p>Iskusan planinski vodič sa preko deset godina iskustva na vrhovima
             Prokletija. Specijaliziran za zahtjevne uspone i sigurnost grupe u svim uslovima.</p>
           <button class="guide-btn" type="button">Odaberi</button>
@@ -329,6 +329,17 @@
         });
       });
     });
+
+    // header: transparentan na vrhu, fejduje u bijeli na skrol (kao na početnoj)
+    (function () {
+      var header = document.querySelector('header');
+      function onScroll() {
+        if (window.scrollY > 40) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
   </script>
 
 </body>

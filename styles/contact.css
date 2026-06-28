@@ -18,16 +18,24 @@ select{
   font-family:'Montserrat', sans-serif;
 }
 
-/* ===== HEADER (copied from routes.css) ===== */
+/* ===== HEADER (transparentan na vrhu, fejduje u bijeli na skrol — kao na početnoj) ===== */
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:12px 60px;
-  background:#fff;
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  width:100%;
+  background:transparent;
+  transition:background 0.35s ease, box-shadow 0.35s ease;
   z-index:1000;
+}
+
+header.scrolled{
+  background:#fff;
+  box-shadow:0 2px 14px rgba(0,0,0,0.10);
 }
 
 .logo{
@@ -35,11 +43,17 @@ header{
   align-items:center;
 }
 
+/* logo: bijel preko heroja, u boji kad je header bijel */
 .logo-mark{
   display:block;
   width:62px;
   height:62px;
   object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+header.scrolled .logo-mark{
+  filter:none;
 }
 
 nav{
@@ -50,7 +64,7 @@ nav{
 }
 
 nav a{
-  color:#16384a;
+  color:#fff;
   text-decoration:none;
   font-size:16px;
   font-weight:500;
@@ -58,9 +72,24 @@ nav a{
   transition:0.3s;
 }
 
+header.scrolled nav a{
+  color:#16384a;
+}
+
 nav a:hover,
 nav a.active{
   color:#0e8388;
+}
+
+/* burger prati boju logoa: bijel na vrhu, taman kad je header bijel */
+header .nav-toggle-label span{
+  background:#fff;
+}
+header.scrolled .nav-toggle-label span{
+  background:#16384a;
+}
+header .nav-toggle-cb:checked ~ .nav-toggle-label span{
+  background:#16384a;
 }
 
 /* ===== HERO ===== */
@@ -69,7 +98,7 @@ nav a.active{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:80vh;
+  min-height:100vh;
   padding:90px 24px;
   background-image:url('../images/mountain-background.webp');
   background-size:cover;

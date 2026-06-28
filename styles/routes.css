@@ -308,7 +308,7 @@ nav a.active{
 }
 
 .read-more{
-  font-size:18px;
+  font-size:15px;
   font-weight:600;
   letter-spacing:0.5px;
   color:#16384a;
@@ -325,7 +325,7 @@ nav a.active{
   border-radius:40px;
   background:#0e8388;
   color:#fff;
-  font-size:18px;
+  font-size:15px;
   font-weight:400;
   cursor:pointer;
   transition:0.3s;

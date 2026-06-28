@@ -46,6 +46,18 @@ header.scrolled .logo-mark{
   filter:none;
 }
 
+/* burger prati boju logoa: bijel na vrhu, taman kad je header bijel */
+header .nav-toggle-label span{
+  background:#fff;
+}
+header.scrolled .nav-toggle-label span{
+  background:#16384a;
+}
+/* X ostaje taman dok je meni otvoren (stoji preko svijetlog panela) */
+header .nav-toggle-cb:checked ~ .nav-toggle-label span{
+  background:#16384a;
+}
+
 .logo{
   display:flex;
   align-items:center;

@@ -20,13 +20,20 @@
     overflow-y:hidden !important;
   }
 
-  /* header: logo lijevo, burger desno */
+  /* header: logo lijevo, burger desno — manji na telefonu */
   header{
     flex-direction:row !important;
     flex-wrap:nowrap !important;
     justify-content:space-between !important;
     align-items:center !important;
     gap:0 !important;
+    padding:8px 18px !important;
+  }
+
+  /* manji logo na telefonu */
+  header .logo-mark{
+    width:42px !important;
+    height:42px !important;
   }
 
   /* burger / X dugme */
